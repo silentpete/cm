@@ -1,0 +1,17 @@
+HOSTNAME="CentOS7-DevEnv"
+
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.name = "#{HOSTNAME}"
+    v.memory = 2048
+    v.cpus = 2
+  end
+  config.vm.box = "DevEnv"
+  config.vm.hostname = "#{HOSTNAME}"
+  config.vm.synced_folder "../code", "/code"
+  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 8081
+  config.vm.network "forwarded_port", guest: 80, host: 8082
+  config.vm.network "forwarded_port", guest: 80, host: 8083
+  config.vm.post_up_message = "Vagranting Complete"
+end
