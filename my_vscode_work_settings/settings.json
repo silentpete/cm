@@ -1,0 +1,41 @@
+{
+  "editor.renderWhitespace":"all",
+  "files.autoSave":"onFocusChange",
+  "editor.renderIndentGuides":true,
+  "editor.tabSize": 4,
+  "indentRainbow.indentSetter": {
+    "tabSize":2
+  },
+  "files.eol":"\n",
+  "editor.formatOnType":true,
+  "files.trimTrailingWhitespace": true,
+  "editor.wordWrap": false,
+  "workbench.iconTheme": "vscode-icons",
+  "editor.dragAndDrop": true,
+  "editor.insertSpaces": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "*.yml":"ansible",
+    "inv-patch-grp-A":"ansible",
+    "inv-patch-grp-B":"ansible",
+    "prod":"ansible",
+    "**/defautls/**/*":"ansible",
+    "**/tasks/**/*.yml":"ansible",
+    "**/handler/*.yml" : "ansible",
+    "**/*-ansible/**/*.yml":"ansible",
+    "**/roles/**/*.yml":"ansible",
+    "**/playbooks/**/*.yml":"ansible",
+    "**/*ansible*/**/*.yml" : "ansible",
+    "**/vars/**/*.yml":"ansible",
+    "**/backup.yml":"ansible",
+    "**/deploy.yml":"ansible",
+    "**/inv/*/*":"ansible",
+    "**/inv/*":"ansible",
+    "**/Jenkinsfile":"jenkins"
+  },
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 8
+  }
+}
