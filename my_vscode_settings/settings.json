@@ -1,0 +1,13 @@
+{
+  "workbench.colorTheme": "Solarized Light",
+  "files.autoSave": "onFocusChange",
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "workbench.iconTheme": "vscode-icons",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "[go]": {
+      "editor.insertSpaces": false,
+      "editor.tabSize": 8
+  }
+}
