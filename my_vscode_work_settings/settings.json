@@ -1,19 +1,24 @@
 {
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 8
+  },
+  "[java]": {
+    "editor.tabSize": 4
+  },
+  "java.home": "D:/jdk1.8.0_101/",
   "editor.renderWhitespace":"all",
   "files.autoSave":"onFocusChange",
   "editor.renderIndentGuides":true,
-  "editor.tabSize": 4,
-  "indentRainbow.indentSetter": {
-    "tabSize":2
-  },
+  "editor.tabSize": 2,
   "files.eol":"\n",
   "editor.formatOnType":true,
   "files.trimTrailingWhitespace": true,
-  "editor.wordWrap": false,
+  "editor.wordWrap": "off",
   "workbench.iconTheme": "vscode-icons",
   "editor.dragAndDrop": true,
   "editor.insertSpaces": true,
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Visual Studio Light",
   "files.insertFinalNewline": true,
   "files.associations": {
     "*.yml":"ansible",
@@ -34,8 +39,4 @@
     "**/inv/*":"ansible",
     "**/Jenkinsfile":"jenkins"
   },
-  "[go]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 8
-  }
 }
