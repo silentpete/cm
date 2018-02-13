@@ -3,6 +3,13 @@
 ADDRESS=""
 NUM_OF_REQUESTS=""
 NUM_OF_REQUESTS_AT_A_TIME=""
+REQ_PACKAGE="httpd-tools"
+if [[ $(rpm -aq | grep -c ${REQ_PACKAGE}) -gt 0 ]]; then
+  echo -e "found ${REQ_PACKAGE}"
+else
+  echo -e "did not find ${REQ_PACKAGE}"
+  exit 1
+fi
 
 echo "How many requests would you like to send?"
 read NUM_OF_REQUESTS
