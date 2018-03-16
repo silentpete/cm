@@ -6,8 +6,9 @@ goVersion="1.10"
 goDir="go${goVersion}"
 echo 'moving to home directory'
 cd
-# Set current working directory
-CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Set go working directory
+CWD="${HOME}"
 
 # make go directory
 if [[ -d ${goDir} ]]; then
