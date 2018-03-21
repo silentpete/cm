@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-convenience-script
 
 # TODO: check if run as sudo/root
