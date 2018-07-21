@@ -1,0 +1,12 @@
+try
+{
+XYZ
+}
+Catch
+{
+$error[0].Exception
+}
+Finally
+{
+$error[0].Exception
+}
