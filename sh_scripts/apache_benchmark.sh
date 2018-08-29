@@ -8,7 +8,13 @@ if [[ $(rpm -aq | grep -c ${REQ_PACKAGE}) -gt 0 ]]; then
   echo -e "found ${REQ_PACKAGE}"
 else
   echo -e "did not find ${REQ_PACKAGE}"
-  exit 1
+  read -p "would you like to install ${REQ_PACKAGE}: [y/n]" answer
+  if [[ "${answer}" == "y" ]]; then
+    sudo yum install -y ${REQ_PACKAGE}
+  else
+    echo 'exiting'
+    exit 1
+  fi
 fi
 
 echo "How many requests would you like to send?"
