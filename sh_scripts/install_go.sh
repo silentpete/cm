@@ -1,7 +1,7 @@
 #!/bin/bash
 
 default_gopath="$HOME/go"
-goVersion="1.11.5"
+goVersion="1.12"
 goDir="go${goVersion}"
 
 # Set working directory
