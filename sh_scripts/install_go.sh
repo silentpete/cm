@@ -24,7 +24,7 @@ function error () {
   exit 1
 }
 
-default_gopath="$HOME/go"
+default_gopath="$HOME/gocode"
 goVersion="1.12"
 goDir="go${goVersion}"
 
