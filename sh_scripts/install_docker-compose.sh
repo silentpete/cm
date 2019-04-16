@@ -10,6 +10,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 # https://docs.docker.com/compose/completion/
 sudo curl -L https://raw.githubusercontent.com/docker/compose/1.16.1/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 
-sudo docker-compose --version
+docker-compose --version
 
 echo "now you can run docker-compose up"
