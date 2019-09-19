@@ -25,6 +25,7 @@ function error () {
 }
 
 default_gopath="$HOME/gocode"
+default_gotmpdir="$HOME/gotmpdir"
 goVersion="1.12"
 goDir="go${goVersion}"
 
@@ -82,6 +83,23 @@ if [[ -z ${GOPATH+x} ]]; then
   path_adjusted="true"
 else
   [[ $VERBOSE ]] && debug 'variable GOPATH already set'
+fi
+
+# setup the GOTMPDIR
+if [[ -d ${default_gotmpdir} ]]; then
+  [[ $VERBOSE ]] && debug "found \"${default_gotmpdir}\""
+else
+  info "Create GOTMPDIR directory"
+  [[ $VERBOSE ]] && debug "did not find directory: \"${default_gotmpdir}\", making directory"
+  mkdir "${default_gotmpdir}"
+fi
+
+if [[ -z ${GOTMPDIR+x} ]]; then
+  info "Set GOTMPDIR"
+  [[ $VERBOSE ]] && debug 'GOTMPDIR not set, setting GOTMPDIR'
+  echo "export GOTMPDIR=${default_gotmpdir}" >> ~/.bashrc
+else
+  [[ $VERBOSE ]] && debug 'variable GOTMPDIR already set'
 fi
 
 if [[ "${path_adjusted}" == "true" ]]; then
