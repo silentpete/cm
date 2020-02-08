@@ -1,0 +1,11 @@
+---
+- name: htop.yml
+  block:
+
+  - name: install htop
+    yum:
+      name: htop
+      state: present
+
+  become: true
+  become_method: sudo

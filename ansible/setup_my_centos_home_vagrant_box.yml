@@ -1,0 +1,6 @@
+---
+- name: setup my vagrant
+  hosts: localhost
+  roles:
+    - repos
+    - applications

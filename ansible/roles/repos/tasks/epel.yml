@@ -1,0 +1,12 @@
+---
+- name: epel.yml
+  block:
+
+  - name: install epel-release
+    yum:
+      name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      state: present
+      validate_certs: no
+
+  become: true
+  become_method: sudo

@@ -1,0 +1,5 @@
+# tasks file for roles/repos
+---
+- import_tasks: epel.yml
+  tags:
+    - install_epel
