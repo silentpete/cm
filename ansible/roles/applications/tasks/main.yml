@@ -3,3 +3,8 @@
 - import_tasks: htop.yml
   tags:
     - install_htop
+
+- import_tasks: httpd-tools.yml
+  tags:
+    - install_httpd-tools
+

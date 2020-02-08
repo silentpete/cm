@@ -1,10 +1,10 @@
 ---
-- name: epel.yml
+- name: httpd-tools.yml
   block:
 
-  - name: install epel-release
+  - name: install httpd-tools
     yum:
-      name: epel-release
+      name: httpd-tools
       state: present
 
   become: true
