@@ -1,17 +1,42 @@
-HOSTNAME="CentOS7-DevEnv"
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+HOSTNAME="devbox"
 
 Vagrant.configure("2") do |config|
+  # https://docs.vagrantup.com.
+
+  config.vm.box = "centos"
+
+  config.vm.hostname = "#{HOSTNAME}"
+
   config.vm.provider "virtualbox" do |v|
     v.name = "#{HOSTNAME}"
     v.memory = 2048
     v.cpus = 2
   end
-  config.vm.box = "DevEnv"
-  config.vm.hostname = "#{HOSTNAME}"
-  config.vm.synced_folder "../code", "/code"
-  config.vm.network "forwarded_port", guest: 80, host: 80
+
+  config.vm.box_check_update = false
+
   config.vm.network "forwarded_port", guest: 80, host: 8081
   config.vm.network "forwarded_port", guest: 80, host: 8082
   config.vm.network "forwarded_port", guest: 80, host: 8083
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 5044, host: 5044
+  config.vm.network "forwarded_port", guest: 5601, host: 5601
+  config.vm.network "forwarded_port", guest: 6060, host: 6060
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8086, host: 8086
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
+  config.vm.network "forwarded_port", guest: 9090, host: 9090
+  config.vm.network "forwarded_port", guest: 9093, host: 9093
+  config.vm.network "forwarded_port", guest: 9200, host: 9200
+  config.vm.network "forwarded_port", guest: 9201, host: 9201
+  config.vm.network "forwarded_port", guest: 9300, host: 9300
+  config.vm.network "forwarded_port", guest: 9600, host: 9600
+
+  config.vm.synced_folder 'C:/Users/silentpete/Dropbox/code/', '/dropbox-code',
+    mount_options: ['dmode=755', 'fmode=755']
+
   config.vm.post_up_message = "Vagranting Complete"
 end
