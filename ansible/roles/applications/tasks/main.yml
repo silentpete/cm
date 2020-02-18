@@ -1,10 +1,12 @@
 # tasks file for roles/applications
 ---
 - import_tasks: htop.yml
+  when: install_htop | bool == true
   tags:
     - install_htop
 
 - import_tasks: httpd-tools.yml
+  when: install_httpd_tools | bool == true
   tags:
-    - install_httpd-tools
+    - install_httpd_tools
 
