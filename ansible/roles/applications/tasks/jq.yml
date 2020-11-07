@@ -1,0 +1,22 @@
+---
+- block:
+
+  - name: install jq
+    yum:
+      name: jq
+      state: present
+
+  when: install_jq | bool == true
+  become: true
+  become_method: sudo
+
+- block:
+
+  - name: uninstall jq
+    yum:
+      name: jq
+      state: absent
+
+  when: install_jq | bool == false
+  become: true
+  become_method: sudo

@@ -1,3 +1,10 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
 # My bashrc stuff
 eval $(dircolors -b)
 export GREP_COLOR='01;32'

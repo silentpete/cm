@@ -1,6 +1,7 @@
 # tasks file for roles/repos
 ---
-- import_tasks: epel.yml
-  when: install_repo_epel | bool == true
+- name: import epel tasks
+  import_tasks: epel.yml
+  when: install_repo_epel is defined
   tags:
     - install_repo_epel

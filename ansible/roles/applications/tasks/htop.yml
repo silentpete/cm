@@ -1,5 +1,5 @@
 ---
-- name: htop.yml
+- name: install htop
   block:
 
   - name: install htop
@@ -7,5 +7,17 @@
       name: htop
       state: present
 
+  when: install_htop | bool == true
+  become: true
+  become_method: sudo
+
+- block:
+
+  - name: uninstall htop
+    yum:
+      name: htop
+      state: absent
+
+  when: install_htop | bool == false
   become: true
   become_method: sudo

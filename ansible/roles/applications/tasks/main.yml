@@ -1,12 +1,25 @@
 # tasks file for roles/applications
 ---
-- import_tasks: htop.yml
-  when: install_htop | bool == true
+- name: import docker tasks
+  import_tasks: docker.yml
+  when: install_docker is defined
   tags:
-    - install_htop
+    - docker
 
-- import_tasks: httpd-tools.yml
-  when: install_httpd_tools | bool == true
+- name: import htop tasks
+  import_tasks: htop.yml
+  when: install_htop is defined
   tags:
-    - install_httpd_tools
+    - htop
 
+- name: import httpd_tools tasks
+  import_tasks: httpd_tools.yml
+  when: install_httpd_tools is defined
+  tags:
+    - httpd_tools
+
+- name: import jq tasks
+  import_tasks: jq.yml
+  when: install_jq is defined
+  tags:
+    - jq

@@ -1,0 +1,70 @@
+---
+- block:
+
+  - name: install docker dependencies
+    yum:
+      name:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+      state: present
+
+  - name: check for docker repo
+    stat:
+      path: /etc/yum.repos.d/docker-ce.repo
+    register: docker_ce_repo
+
+  - name: install docker-ce.repo if not found
+    when: docker_ce_repo.stat.exists | bool == false
+    import_tasks: ../../repos/tasks/docker.yml
+
+  - name: install docker
+    yum:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+      state: present
+
+  - name: enable docker
+    service:
+      name: docker
+      enabled: true
+
+  - name: start docker
+    service:
+      name: docker
+      state: started
+
+  - name: install docker-compose
+    yum:
+      name: docker-compose
+      state: present
+
+  when: install_docker | bool == true
+  become: true
+  become_method: sudo
+
+- block:
+
+  - name: uninstall docker-compose
+    yum:
+      name: docker-compose
+      state: absent
+
+  - name: stop docker
+    service:
+      name: docker
+      state: stopped
+
+  - name: uninstall docker
+    yum:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+      state: absent
+
+  when: install_docker | bool == false
+  become: true
+  become_method: sudo

@@ -1,0 +1,18 @@
+---
+- block:
+
+  - name: copy .bashrc to ~
+    copy:
+      src: .bashrc
+      dest: ~/.bashrc
+
+  when: deploy_bashrc | bool == true
+
+- block:
+
+  - name: make sure ~/.bashrc is original from centos
+    copy:
+      src: .bashrc.orig
+      dest: ~/.bashrc
+
+  when: deploy_bashrc | bool == false

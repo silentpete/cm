@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9300, host: 9300
   config.vm.network "forwarded_port", guest: 9600, host: 9600
 
-  config.vm.synced_folder 'C:/Users/silentpete/Dropbox/code/', '/dropbox-code',
+  config.vm.synced_folder 'C:/code/', '/code',
     mount_options: ['dmode=755', 'fmode=755']
 
   config.vm.post_up_message = "Vagranting Complete"

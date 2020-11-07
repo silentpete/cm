@@ -1,7 +1,0 @@
-[all:vars]
-install_htop=true
-install_httpd_tools=true
-install_repo_epel=true
-
-[servers]
-localhost ansible_connection=local

@@ -1,11 +1,22 @@
 ---
-- name: epel.yml
-  block:
+- block:
 
-  - name: install epel-release
+  - name: install epel-release repo
     yum:
       name: epel-release
       state: present
 
+  when: install_repo_epel | bool == true
+  become: true
+  become_method: sudo
+
+- block:
+
+  - name: uninstall epel-release repo
+    yum:
+      name: epel-release
+      state: absent
+
+  when: install_repo_epel | bool == false
   become: true
   become_method: sudo
