@@ -1,2 +1,3 @@
-# cm
-Going to be the place where we can create things needed to do stuff
+# My Configuration Management Stuff
+
+Using this space for things related to my personal space automation or saving files.
