@@ -1,22 +1,24 @@
 ---
 - block:
-
   - name: install jq
     yum:
       name: jq
       state: present
-
-  when: install_jq | bool == true
+  when:
+    - install_jq | bool == true
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo
 
 - block:
-
   - name: uninstall jq
     yum:
       name: jq
       state: absent
-
-  when: install_jq | bool == false
+  when:
+    - install_jq | bool == false
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo

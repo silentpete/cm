@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars:
+    role: 'repos'
+  roles:
+    - '{{ role }}'
