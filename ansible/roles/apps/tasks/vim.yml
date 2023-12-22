@@ -1,0 +1,27 @@
+---
+- name: Install VIM
+  when:
+    - apps_vim_install | bool == true
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  block:
+  - name: install vim
+    yum:
+      name: vim
+      state: present
+  become: true
+  become_method: sudo
+
+
+- name: Uninstall VIM
+  when:
+    - apps_vim_install | bool == false
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  block:
+  - name: uninstall vim
+    yum:
+      name: vim
+      state: absent
+  become: true
+  become_method: sudo

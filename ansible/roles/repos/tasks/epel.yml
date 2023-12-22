@@ -1,24 +1,26 @@
 ---
-- block:
-  - name: install epel-release repo
-    yum:
-      name: epel-release
-      state: present
+- name: Repos - install epel block
   when:
-    - install_repo_epel | bool == true
+    - repos_epel_install | bool == true
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo
+  block:
+    - name: Ensure epel-release repository is present
+      ansible.builtin.package:
+        name: epel-release
+        state: present
 
-- block:
-  - name: uninstall epel-release repo
-    yum:
-      name: epel-release
-      state: absent
+- name: Repos - uninstall epel block
   when:
-    - install_repo_epel | bool == false
+    - repos_epel_install | bool == false
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo
+  block:
+    - name: uninstall epel-release repo
+      yum:
+        name: epel-release
+        state: absent

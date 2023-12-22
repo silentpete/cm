@@ -2,9 +2,3 @@ all:
   hosts:
     localhost:
       ansible_connection: local
-      deploy_bashrc: false
-      install_docker: false
-      install_htop: false
-      install_httpd_tools: false
-      install_jq: false
-      install_repo_epel: false

@@ -1,0 +1,18 @@
+---
+- name: Setup my vagrant
+  hosts: all
+  vars:
+    apps_docker_install: true
+    apps_htop_install: true
+    apps_httpd_tools_install: true
+    apps_jq_install: true
+    apps_terraform_install: true
+    apps_terraform_set_alias: true
+    apps_vim_install: true
+    environment_customize_env: true
+    repos_docker_install: true
+    repos_epel_install: true
+  roles:
+    - repos
+    - environment
+    - apps

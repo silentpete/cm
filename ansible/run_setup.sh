@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible-playbook setup.yml -i inventory.yml -l localhost
+ansible-playbook ./playbooks/vagrant_setup.playbook.yml -i ./inventory.yml -l localhost

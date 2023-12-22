@@ -1,14 +1,20 @@
 ---
-- name: install centos docker repo
-  get_url:
-    url: https://download.docker.com/linux/centos/docker-ce.repo
-    dest: /etc/yum.repos.d/docer-ce.repo
+- name: Repos - install Docker block
   when:
-    - ansible_distribution == "CentOS"
+    - repos_docker_install | bool == true
+  become: true
+  become_method: sudo
+  block:
+    - name: Ensure Docker repository exists on CentOS
+      when:
+        - ansible_distribution == "CentOS"
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
 
-- name: install fedora docker repo
-  get_url:
-    url: https://download.docker.com/linux/fedora/docker-ce.repo
-    dest: /etc/yum.repos.d/docer-ce.repo
-  when:
-    - ansible_distribution == "Fedora"
+    - name: Ensure Docker repository exists on Fedora
+      when:
+        - ansible_distribution == "Fedora"
+      get_url:
+        url: https://download.docker.com/linux/fedora/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo

@@ -1,0 +1,26 @@
+---
+- name: The environment_customize_env block
+  when:
+    - environment_customize_env | bool == true
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  become: true
+  become_method: sudo
+  block:
+    - name: Deploy customize_env.sh to /etc/profile.d/
+      copy:
+        src: customize_env.sh
+        dest: /etc/profile.d/
+
+- name:
+  when:
+    - environment_customize_env | bool == false
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  become: true
+  become_method: sudo
+  block:
+  - name: Ensure customize_env.sh is absent
+    file:
+      path: /etc/profile.d/customize_env.sh
+      state: absent

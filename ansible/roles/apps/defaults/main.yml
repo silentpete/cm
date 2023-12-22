@@ -1,0 +1,9 @@
+# <role_name>_<noun>_<verb>
+---
+apps_docker_install: false
+apps_htop_install: false
+apps_httpd_tools_install: false
+apps_jq_install: false
+apps_terraform_install: false
+apps_terraform_set_alias: false
+apps_vim_install: false

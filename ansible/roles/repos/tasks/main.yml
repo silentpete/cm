@@ -1,7 +1,12 @@
-# tasks file for roles/repos
 ---
-- name: import epel tasks
-  import_tasks: epel.yml
-  when: install_repo_epel is defined
+- name: Import docker.yml
+  when: repos_docker_install is defined
+  import_tasks: docker.yml
   tags:
-    - install_repo_epel
+    - repos_docker_install
+
+- name: Import epel.yml
+  when: repos_epel_install is defined
+  import_tasks: epel.yml
+  tags:
+    - repos_epel_install

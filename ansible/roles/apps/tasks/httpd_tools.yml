@@ -1,23 +1,23 @@
 ---
 - block:
-  - name: install jq
+  - name: install httpd-tools
     yum:
-      name: jq
+      name: httpd-tools
       state: present
   when:
-    - install_jq | bool == true
+    - apps_httpd_tools_install | bool == true
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo
 
 - block:
-  - name: uninstall jq
+  - name: uninstall httpd-tools
     yum:
-      name: jq
+      name: httpd-tools
       state: absent
   when:
-    - install_jq | bool == false
+    - apps_httpd_tools_install | bool == false
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
   become: true

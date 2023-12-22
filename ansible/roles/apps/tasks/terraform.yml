@@ -1,0 +1,34 @@
+---
+- name: Applications - install Terraform block
+  when:
+    - apps_terraform_install | bool == true
+  become: true
+  become_method: sudo
+  block:
+    - name: ensure package yum-utils is present
+      ansible.builtin.package:
+        name: yum-utils
+        state: present
+
+    - name: Add hashicorp repository
+      ansible.builtin.yum_repository:
+        name: hashicorp
+        description: hashicorp
+        baseurl: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+    - name: ensure package terraform is present
+      ansible.builtin.package:
+        name: terraform
+        state: present
+
+- name: Applications - set Terraform alias
+  when:
+    - apps_terraform_install | bool == true
+    - apps_terraform_set_alias | bool == true
+  become: true
+  become_method: sudo
+  block:
+    - name: Deploy terraform_alias.sh to /etc/profile.d/
+      copy:
+        src: terraform_alias.sh
+        dest: /etc/profile.d/

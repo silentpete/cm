@@ -1,0 +1,38 @@
+---
+- name: import docker tasks
+  import_tasks: docker.yml
+  when: apps_docker_install is defined
+  tags:
+    - docker
+
+- name: import htop tasks
+  import_tasks: htop.yml
+  when: apps_htop_install is defined
+  tags:
+    - htop
+
+- name: import httpd_tools tasks
+  import_tasks: httpd_tools.yml
+  when: apps_httpd_tools_install is defined
+  tags:
+    - httpd_tools
+
+- name: import jq tasks
+  import_tasks: jq.yml
+  when: apps_jq_install is defined
+  tags:
+    - jq
+
+- name: import terraform tasks
+  import_tasks: terraform.yml
+  when: apps_terraform_install is defined
+  tags:
+    - apps_terraform_install
+    - terraform_install
+    - terraform
+
+- name: import vim tasks
+  import_tasks: vim.yml
+  when: apps_vim_install is defined
+  tags:
+    - vim

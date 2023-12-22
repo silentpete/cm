@@ -1,6 +1,0 @@
-# defaults file for roles/applications
----
-install_docker: false
-install_htop: false
-install_httpd_tools: false
-install_jq: false

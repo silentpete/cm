@@ -1,11 +1,4 @@
-# .bashrc
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-fi
-
-# My bashrc stuff
+# Customize the system environment without changing the ~/.bashrc
 eval $(dircolors -b)
 export GREP_COLOR='01;32'
 PROMPT_COMMAND='_PROMPT_EXIT_STATUS=$?; _PWD_RELATIVE="${PWD/#$HOME/~}"; printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'

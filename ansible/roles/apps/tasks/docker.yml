@@ -1,7 +1,12 @@
 ---
 - name: CentOS 7 Install Block
+  when:
+    - apps_docker_install | bool == true
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  become: true
+  become_method: sudo
   block:
-
   - name: install centos 7 docker dependencies
     yum:
       name:
@@ -42,14 +47,11 @@
       name: docker-compose
       state: present
 
+- name: CentOS 7 Uninstall Block
   when:
-    - install_docker | bool == true
+    - apps_docker_install | bool == false
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-  become: true
-  become_method: sudo
-
-- name: CentOS 7 Uninstall Block
   block:
 
   - name: uninstall docker-compose
@@ -70,10 +72,6 @@
         - containerd.io
       state: absent
 
-  when:
-    - install_docker | bool == false
-    - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "7"
   become: true
   become_method: sudo
 
@@ -140,7 +138,7 @@
       state: present
 
   when:
-    - install_docker | bool == true
+    - apps_docker_install | bool == true
     - ansible_distribution == "Fedora"
     - ansible_distribution_major_version >= "32"
   become: true

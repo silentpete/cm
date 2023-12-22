@@ -1,7 +1,6 @@
-# tasks file for ./roles/environment
 ---
-- name: import bashrc tasks
-  import_tasks: bashrc.yml
-  when: deploy_bashrc is defined
+- name: Import customize_env.yml
+  when: environment_customize_env is defined
+  import_tasks: customize_env.yml
   tags:
     - bashrc
