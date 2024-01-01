@@ -2,6 +2,7 @@
 - name: Setup my vagrant
   hosts: all
   vars:
+    apps_aws_cli_v2_install: true
     apps_docker_install: true
     apps_htop_install: true
     apps_httpd_tools_install: true

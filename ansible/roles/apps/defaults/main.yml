@@ -1,5 +1,6 @@
 # <role_name>_<noun>_<verb>
 ---
+apps_aws_cli_v2_install: false
 apps_docker_install: false
 apps_htop_install: false
 apps_httpd_tools_install: false

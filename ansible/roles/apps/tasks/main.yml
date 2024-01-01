@@ -1,4 +1,10 @@
 ---
+- name: import aws_cli tasks
+  import_tasks: aws_cli_v2.yml
+  when: apps_aws_cli_v2_install is defined
+  tags:
+    - apps_aws_cli_v2_install
+
 - name: import docker tasks
   import_tasks: docker.yml
   when: apps_docker_install is defined

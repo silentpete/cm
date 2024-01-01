@@ -1,0 +1,36 @@
+---
+- name: Install AWS CLI v2 Block
+  when:
+    - apps_aws_cli_v2_install | bool == true
+  become: true
+  become_method: sudo
+  block:
+    - name: Ensure aws cli v2 dependencies are present
+      ansible.builtin.package:
+        name:
+          - unzip
+          - glibc
+          - groff
+          - less
+        state: present
+
+    - name: Create working directory /opt/aws
+      ansible.builtin.file:
+        path: /opt/aws
+        state: directory
+
+    - name: Download awscliv2.zip into /opt/aws
+      ansible.builtin.get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /opt/aws/awscliv2.zip
+        mode: '0700'
+
+    - name: Unarchive /opt/aws/awscliv2.zip on the remote machine
+      ansible.builtin.unarchive:
+        src: /opt/aws/awscliv2.zip
+        dest: /opt/aws
+        remote_src: yes
+
+    - name: Execute aws install command
+      ansible.builtin.command:
+        cmd: /opt/aws/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
