@@ -5,13 +5,13 @@
   become: true
   become_method: sudo
   block:
-    - name: Ensure aws cli v2 dependencies are present
+    - name: Ensure aws cli v2 package dependencies are present
       ansible.builtin.package:
         name:
-          - unzip
           - glibc
           - groff
           - less
+          - unzip
         state: present
 
     - name: Create working directory /opt/aws
@@ -34,3 +34,13 @@
     - name: Execute aws install command
       ansible.builtin.command:
         cmd: /opt/aws/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+
+    - name: Ensure package complete is present
+      ansible.builtin.package:
+        name:
+          - complete
+        state: present
+
+    - name: Enable aws auto complete
+      ansible.builtin.command:
+        cmd: complete -C aws_completer aws
