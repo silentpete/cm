@@ -1,0 +1,22 @@
+{
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 8
+  },
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "editor.renderWhitespace": "all",
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "editor.formatOnType": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.wordWrap": "off",
+  "workbench.iconTheme": "vscode-icons",
+  "editor.dragAndDrop": true,
+  "editor.insertSpaces": true,
+  "workbench.colorTheme": "Visual Studio Light",
+  "files.insertFinalNewline": true
+}

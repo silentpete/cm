@@ -1,0 +1,58 @@
+{
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 8
+  },
+  "[java]": {
+    "editor.tabSize": 4
+  },
+  "[makefile]": {
+    "editor.insertSpaces": false
+  },
+  "[markdown]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [
+      {
+        "column": 100,
+        "color": "#ff000042"
+      }
+    ]
+  },
+  "editor.dragAndDrop": false,
+  "editor.formatOnType": true,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [
+    {
+      "column": 80,
+      "color": "#00ff003f"
+    },
+    {
+      "column": 100,
+      "color": "#d9ff006c"
+    },
+    {
+      "column": 120,
+      "color": "#ff000042"
+    }
+  ],
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "workbench.colorTheme": "Visual Studio Light",
+  "remote.SSH.remotePlatform": {
+    "rocky9": "linux"
+  },
+  "window.zoomLevel": 0,
+  "editor.showFoldingControls": "always",
+  "workbench.iconTheme": "vscode-icons"
+}
