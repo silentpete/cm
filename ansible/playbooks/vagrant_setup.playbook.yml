@@ -1,6 +1,15 @@
+#!/usr/local/bin/ansible-playbook
+#
+# Example Initial Run
+# $ ANSIBLE_ROLES_PATH=/code/github.com/silentpete/cm/ansible/roles /code/github.com/silentpete/cm/ansible/playbooks/vagrant_setup.playbook.yml -i /code/github.com/silentpete/cm/ansible/inventory -D -v
+#
 ---
-- name: Setup my vagrant
-  hosts: all
+- name: Setup my vagrant playbook
+  hosts: localhost
+  roles:
+    - repos
+    - environment
+    - apps
   vars:
     apps_aws_cli_v2_install: true
     apps_docker_install: true
@@ -13,7 +22,21 @@
     environment_customize_env: true
     repos_docker_install: true
     repos_epel_install: true
-  roles:
-    - repos
-    - environment
-    - apps
+
+  pre_tasks:
+    - name: Ensure /etc/ansible exists
+      ansible.builtin.file:
+        path: /etc/ansible
+        state: directory
+      become: true
+      become_method: ansible.builtin.sudo
+
+    - name: Symlink /etc/ansible/roles to our roles
+      ansible.builtin.file:
+        src: "{{ lookup('ansible.builtin.env', 'ANSIBLE_ROLES_PATH') }}"
+        dest: "/etc/ansible/roles"
+        state: link
+        force: true
+        follow: false
+      become: true
+      become_method: ansible.builtin.sudo

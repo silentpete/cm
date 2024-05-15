@@ -1,42 +1,117 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-HOSTNAME="devbox"
+# Windows username, used to mount in ~/.ssh and for hostname
+USERNAME = "peter"
 
-Vagrant.configure("2") do |config|
-  # https://docs.vagrantup.com.
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
+  # For a complete reference of options, please see the online documentation at https://docs.vagrantup.com.
 
-  config.vm.box = "centos"
+  # By default or if set to true, Vagrant will automatically insert a keypair to use for SSH... If set to false, Vagrant will not automatically add a keypair to the guest.
+  config.ssh.insert_key=false
 
-  config.vm.hostname = "#{HOSTNAME}"
-
-  config.vm.provider "virtualbox" do |v|
-    v.name = "#{HOSTNAME}"
-    v.memory = 2048
-    v.cpus = 2
+  # Every Vagrant development environment requires a box. You can search for boxes at https://app.vagrantup.com/.
+  config.vm.define "rockylinux8", autostart: false do |rockylinux8|
+    # All boxes from the Chef bento project: https://app.vagrantup.com/bento
+    # https://app.vagrantup.com/bento/boxes/rockylinux-8.9
+    # Requires vagrant 2.4.1 or higher
+    rockylinux8.vm.box = "bento/rockylinux-8.9"
+    rockylinux8.vm.box_version = "202404.23.0"
+    rockylinux8.vm.hostname = "#{USERNAME}.vagrant.localhost"
+    rockylinux8.ssh.port=2280
+    rockylinux8.vm.network "forwarded_port", id: '2280->22', host: 2280, guest: 22
+    rockylinux8.vm.provision "shell",
+      inline: "echo \"To set up your vagrant VM, run: /vagrant/files/init.sh\" | sudo tee /etc/motd"
   end
 
-  config.vm.box_check_update = false
+  config.vm.define "rockylinux9", primary: true do |rockylinux9|
+    # https://app.vagrantup.com/bento/boxes/rockylinux-9.3
+    # Requires vagrant 2.4.1 or higher
+    rockylinux9.vm.box = "bento/rockylinux-9.3"
+    rockylinux9.vm.box_version = "202404.23.0"
+    rockylinux9.vm.hostname = "#{USERNAME}.vagrant.localhost"
+    rockylinux9.ssh.port=2281
+    rockylinux9.vm.network "forwarded_port", id: '2281->22', host: 2281, guest: 22
+    rockylinux9.vm.provision "shell",
+      inline: "echo \"To set up your vagrant VM, run: /vagrant/files/init.sh\" | sudo tee /etc/motd"
+  end
 
-  config.vm.network "forwarded_port", guest: 80, host: 8081
-  config.vm.network "forwarded_port", guest: 80, host: 8082
-  config.vm.network "forwarded_port", guest: 80, host: 8083
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 5044, host: 5044
-  config.vm.network "forwarded_port", guest: 5601, host: 5601
-  config.vm.network "forwarded_port", guest: 6060, host: 6060
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-  config.vm.network "forwarded_port", guest: 8086, host: 8086
-  config.vm.network "forwarded_port", guest: 9000, host: 9000
-  config.vm.network "forwarded_port", guest: 9090, host: 9090
-  config.vm.network "forwarded_port", guest: 9093, host: 9093
-  config.vm.network "forwarded_port", guest: 9200, host: 9200
-  config.vm.network "forwarded_port", guest: 9201, host: 9201
-  config.vm.network "forwarded_port", guest: 9300, host: 9300
-  config.vm.network "forwarded_port", guest: 9600, host: 9600
+  config.vm.define "ubuntu22", autostart: false do |ubuntu22|
+    # https://app.vagrantup.com/bento/boxes/ubuntu-22.04
+    # Requires vagrant 2.4.1 or higher
+    ubuntu22.vm.box = "bento/ubuntu-22.04"
+    ubuntu22.vm.box_version = "202404.23.0"
+    ubuntu22.vm.hostname = "#{USERNAME}.vagrant.localhost"
+    ubuntu22.ssh.port=2282
+    ubuntu22.vm.network "forwarded_port", id: '2282->22', host: 2282, guest: 22
+    ubuntu22.vm.provision "shell",
+      inline: "echo \"To set up your vagrant VM, run: /vagrant/files/init.sh\" | sudo tee /etc/motd"
+  end
 
-  config.vm.synced_folder 'C:/dev/code/', '/code',
-    mount_options: ['dmode=755', 'fmode=755']
+  config.vm.define "ubuntu24", autostart: false do |ubuntu24|
+    # https://app.vagrantup.com/bento/boxes/ubuntu-24.04
+    # Requires vagrant 2.4.1 or higher
+    ubuntu24.vm.box = "bento/ubuntu-24.04"
+    ubuntu24.vm.box_version = "202404.26.0"
+    ubuntu24.vm.hostname = "#{USERNAME}.vagrant.localhost"
+    ubuntu24.ssh.port=2283
+    ubuntu24.vm.network "forwarded_port", id: '2283->22', host: 2283, guest: 22
+    ubuntu24.vm.provision "shell",
+      inline: "echo \"To set up your vagrant VM, run: /vagrant/files/init.sh\" | sudo tee /etc/motd"
+  end
 
-  config.vm.post_up_message = "Vagranting Complete"
+  config.vm.define "debian12", autostart: false do |debian12|
+    # https://app.vagrantup.com/bento/boxes/debian-12.4
+    debian12.vm.box = "bento/debian-12.4"
+    debian12.vm.box_version = "202401.31.0"
+    debian12.vm.hostname = "#{USERNAME}.vagrant.localhost"
+    debian12.ssh.port=2284
+    debian12.vm.network "forwarded_port", id: '2284->22', host: 2284, guest: 22
+    debian12.vm.provision "shell",
+      inline: "echo \"To set up your vagrant VM, run: /vagrant/files/init.sh\" | sudo tee /etc/motd"
+  end
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings#config-vm-box_check_update
+  config.vm.box_check_update = true
+
+  # Do Not upgrade vbox guest extensions
+  config.vbguest.auto_update = false
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder 'C:/code/', '/code', mount_options: ["uid=1000", "gid=1000", "dmode=755"], SharedFoldersEnableSymlinksCreate: true
+  config.vm.synced_folder "C:/Users/#{USERNAME}/.ssh", '/vagrant/files/.ssh', mount_options: ["uid=1000", "gid=1000", "dmode=0544", "fmode=0400"]
+
+  # the time in seconds that Vagrant will wait for the machine to boot and be accessible
+  config.vm.boot_timeout = 300
+
+  config.vm.provider "virtualbox" do |vb|
+    # Do NOT display the VirtualBox GUI when booting the machine
+    vb.gui = false
+
+    # Customize the amount of memory and cpu on the VM:
+    vb.memory = "4096"
+    vb.cpus = 2
+
+    # Enables or disables the VirtualBox Remote Desktop Extension (VRDE) server.
+    vb.customize ['modifyvm', :id, '--vrde', 'off']
+
+    # set time
+    vb.customize ['guestproperty','set', :id,'/VirtualBox/GuestAdd/VBoxService/ --timesync-set-start' ]
+    vb.customize ['guestproperty','set', :id,'/VirtualBox/GuestAdd/VBoxService/ --timesync-set-threshold', 10000 ]
+
+  end
 end
+
+# To upgrade the virtual box guest addtions:  https://www.serverlab.ca/tutorials/virtualization/how-to-auto-upgrade-virtualbox-guest-additions-with-vagrant/
+# $ vagrant plugin install vagrant-vbguest
+# $ vagrant plugin update vagrant-vbguest
